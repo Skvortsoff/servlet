@@ -17,9 +17,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class EmployeeRepositorySingletonTest {
- private static EmployeeRepositorySingleton ers1;
- private static EmployeeRepositorySingleton ers2;
-    private static Connection err1;
+private static EmployeeRepositorySingleton ers1;
+private static EmployeeRepositorySingleton ers2;
+private static Connection err1;
 
 	@BeforeClass
 	public static void beforeClass()throws Exception {
