@@ -8,7 +8,12 @@ private String fname;
 private String lname;
 private String email;
 private int idEmployee;
- private static AtomicInteger count= new AtomicInteger(0);
+
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
+    }
+
+    private static AtomicInteger count= new AtomicInteger(0);
 public Employee (){
     count.decrementAndGet();
             this.idEmployee=count.get();

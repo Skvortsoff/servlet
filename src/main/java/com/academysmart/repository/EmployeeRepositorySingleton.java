@@ -1,8 +1,11 @@
 package com.academysmart.repository;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import com.academysmart.database.Oracle;
 import com.academysmart.exception.IncorrectEmailException;
 import com.academysmart.exception.ServletException;
 import com.academysmart.model.Employee;
@@ -24,7 +27,7 @@ private EmployeeRepositorySingleton(){}
 	public void addEmployee(String fname, String lname, String email)
         //TODO implement method that adds an employee to repository
         //This method should check that email is not used by other employees
-			throws ServletException {
+            throws ServletException, SQLException {
         if (fname.trim().equals("") || lname.trim().equals("") || email.trim().equals("")){
             throw new ServletException("one or more fields empty");
         }
@@ -35,15 +38,24 @@ private EmployeeRepositorySingleton(){}
                 }
             }
         }
-Employee empl= new Employee();
-                empl.setFname(fname);
-                empl.setLname(lname);
-                empl.setEmail(email);
-                employees.add(empl);
+//Employee empl= new Employee();
+
+
+                    Oracle.insertTable(fname,lname,email);
+
+
+                employees= Oracle.selectTable();
+              //  empl.setFname(fname);
+              //  empl.setLname(lname);
+              //  empl.setEmail(email);
+              //  employees.add(empl);
 
 	}
 
 	public List<Employee> getAllEmployees() {
+
+
+        employees =  Oracle.selectTable();
 
 		//TODO implement method that returns list of all employees
 		return employees;

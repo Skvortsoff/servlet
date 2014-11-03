@@ -3,6 +3,7 @@ package com.academysmart.controller;
 import com.academysmart.repository.EmployeeRepositorySingleton;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,10 +33,15 @@ public class EmployeesServlet extends HttpServlet {
         //validating email, redirecting client to a page where employee list is displayed etc.
 
         try {
-            ers.addEmployee(request.getParameter("fname"), request.getParameter("lname"), request.getParameter("email"));
+
+                ers.addEmployee(request.getParameter("fname"), request.getParameter("lname"), request.getParameter("email"));
+
+
 
         } catch (com.academysmart.exception.ServletException e) {
-            request.setAttribute("errMsg",e.getMessage());
+            request.setAttribute("errMsg", e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         this.doGet(request,response);
     }

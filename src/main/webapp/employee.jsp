@@ -13,13 +13,13 @@
 	<form action="index.html" method="post">
 		<!-- Create fields for new employee -->
       <p>
-          <label> <input type="text" name="fname"/> First name:</label>
+          <label> First name: <input type="text" name="fname"/></label>
 
-          <label> <input type="text" name="lname"/>Last name:</label>
+          <label> Last name: <input type="text" name="lname"/></label>
 
-          <label> <input type="text" name="email"/>Your e-mail:</label>
+          <label> Your e-mail: <input type="text" name="email"/></label>
 
-          <label> <input name="подт. ввод:" type="submit"  value="к чертям собачим">Submit:</label>
+          <label> <input name="подт. ввод:" type="submit"  value="Внести данные"></label>
 
       </p>
 
@@ -29,7 +29,7 @@
 	</div>
 	<div class="empTable">
 		<c:choose>
-			<c:when test="${empty applicationScope.employees}">
+			<c:when test="${empty employees}">
 				<!-- Inform user that there's no employee yet -->
                 Value off!
                 			</c:when>
@@ -41,13 +41,15 @@
                     <td>First Name:</td>
                     <td>Last Name:</td>
                     <td>e-mail:</td>
+                    <td>ID client:</td>
                 </tr>
 
-					<c:forEach var="employee" items="${applicationScope.employees}">
+					<c:forEach var="employee" items="${employees}">
 						<tr>
 							<td><c:out value="${employee.fname}" /></td>
                             <td><c:out value="${employee.lname}" /></td>
                             <td><c:out value="${employee.email}" /></td>
+                            <td><c:out value="${employee.idEmployee}" /></td>
 						</tr>
 					</c:forEach>
                 </table>
